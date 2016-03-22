@@ -33,5 +33,6 @@
 # "temporary" build files
 /target
 .idea
+*.iml
 
 # Created by .ignore support plugin (hsz.mobi)

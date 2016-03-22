@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package grails.plugin.springsecurity
+package org.example
+
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 import javax.servlet.http.HttpServletResponse
 
@@ -28,15 +30,18 @@ class LogoutController {
     /**
      * Index action. Redirects to the Spring security logout uri.
      */
+    static defaultAction = "index"
     def index() {
 
-        if (!request.post && SpringSecurityUtils.getSecurityConfig().logout.postOnly) {
-            response.sendError HttpServletResponse.SC_METHOD_NOT_ALLOWED // 405
-            return
-        }
-
-        // TODO put any pre-logout code here
-        redirectStrategy.sendRedirect request, response, SpringSecurityUtils.securityConfig.logout.filterProcessesUrl // '/j_spring_security_logout'
-        response.flushBuffer()
+//        if (!request.post && SpringSecurityUtils.getSecurityConfig().logout.postOnly) {
+//            response.sendError HttpServletResponse.SC_METHOD_NOT_ALLOWED // 405
+//            return
+//        }
+//
+//         TODO put any pre-logout code here
+//        redirectStrategy.sendRedirect request, response, SpringSecurityUtils.securityConfig.logout.filterProcessesUrl // '/j_spring_security_logout'
+//        response.flushBuffer()
+        session.invalidate()
+        redirect(controller: 'login')
     }
 }

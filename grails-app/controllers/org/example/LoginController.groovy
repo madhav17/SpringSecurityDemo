@@ -40,6 +40,7 @@ class LoginController {
      */
     def springSecurityService
 
+    static defaultAction = "index"
     /**
      * Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise.
      */
@@ -58,8 +59,11 @@ class LoginController {
      */
     def auth() {
 
+
         def config = SpringSecurityUtils.securityConfig
 
+        println "dsfsd"
+        println config.successHandler.defaultTargetUrl
         if (springSecurityService.isLoggedIn()) {
             redirect uri: config.successHandler.defaultTargetUrl
             return
@@ -67,7 +71,10 @@ class LoginController {
 
         String view = 'auth'
         String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-        render view: view, model: [postUrl: postUrl,
+        println postUrl
+        println "dsfsd"
+
+        render view: 'auth', model: [postUrl: postUrl,
                                    rememberMeParameter: config.rememberMe.parameter]
     }
 

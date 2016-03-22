@@ -25,7 +25,7 @@ class BootStrap {
         User user = createUser("madhav.khanna@intelligrape.com")
         createUserRole(user,userRole)
 
-        user = createUser("madhav.khanna@othenew.com")
+        user = createUser("madhav.khanna@tothenew.com")
         createUserRole(user,adminRole)
         createUserRole(user,userRole)
     }
